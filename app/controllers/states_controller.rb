@@ -50,11 +50,16 @@ class StatesController < ApplicationController
 
   # DELETE /states/1 or /states/1.json
   def destroy
-    @state.destroy
-
-    respond_to do |format|
-      format.html { redirect_to states_url, notice: I18n.t("state.destroyed") }
-      format.json { head :no_content }
+    if @state.destroy
+      respond_to do |format|
+        format.html { redirect_to states_url, notice: I18n.t("state.destroyed") }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to state_url(@state), notice: I18n.t("cannot_destroy_item") }
+        format.json { head :no_content }
+      end
     end
   end
 

@@ -33,7 +33,8 @@ class InventoriesController < ApplicationController
 
   def update
     respond_to do |format|
-      if @inventory.update(inventory_params)
+      quantity = inventory_params[:quantity].to_i
+      if @inventory.update(inventory_params.except(:quantity)) && @inventory.check_and_update_quantity(quantity)
         format.html { redirect_to inventory_url(@inventory), notice: I18n.t("inventory.updated") }
         format.json { render :show, status: :ok, location: @inventory }
       else
@@ -44,16 +45,14 @@ class InventoriesController < ApplicationController
   end
 
   def destroy
-    @mapping = ShipmentInventoryMapping.where(inventory_id: @inventory.id)
-    if @mapping.present?
+    if @inventory.destroy
       respond_to do |format|
-        format.html { redirect_to inventory_url(@inventory), notice: I18n.t("cannot_destroy_item") }
+        format.html { redirect_to inventories_url, notice: I18n.t("inventory.destroyed") }
         format.json { head :no_content }
       end
     else
-      @inventory.destroy
       respond_to do |format|
-        format.html { redirect_to inventories_url, notice: I18n.t("inventory.destroyed") }
+        format.html { redirect_to inventories_url, notice: I18n.t("cannot_destroy_item") }
         format.json { head :no_content }
       end
     end

@@ -56,3 +56,4 @@ en:
     created: "Inventory was successfully created."
     updated: "Inventory was successfully updated."
     destroyed: "Inventory was successfully destroyed."
+    quantity_error: "Inventory has been assigned to shipment. Adjust shipment accordingly to reduce inventory quantity"

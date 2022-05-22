@@ -53,7 +53,7 @@ class CitiesController < ApplicationController
     @city.destroy
 
     respond_to do |format|
-      format.html { redirect_to cities_url, notice: I18n.t("state.destroyed") }
+      format.html { redirect_to cities_url, notice: I18n.t("city.destroyed") }
       format.json { head :no_content }
     end
   end
