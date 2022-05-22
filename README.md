@@ -31,3 +31,20 @@ Additional Task Implemented:
 
 Ability to create shipments and assign inventory to shipment and adjust inventory appropriately
 
+Steps to Get the application running:
+	
+Step 1: Database creation - ```rake db:migrate```
+
+Step 2: Database initialization - ```rake db:seed```
+
+Step 3: Start the rails server - ```rails s -p 3000```
+
+Step 4: Type in ```127.0.0.1:3000``` or ```localhost:3000``` in the browser
+
+Features Implemented:
+
+Inventory CRUD
+
+Additional Task Implemented:
+
+Ability to create shipments and assign inventory to shipment and adjust inventory appropriately
