@@ -23,7 +23,7 @@
 
   <div>
     <%= form.label :inventory, style: "display: block" %>
-    <%= form.select :inventory_id, options_for_select(Inventory.all.map {|i| ["#{i.name.titleize} - Quantity Available #{i.quantity}", i.id]}, @mapping.inventory_id) %>
+    <%= form.select :inventory_id, options_for_select(Inventory.active.map {|i| ["#{i.name.titleize} - Quantity Available #{i.quantity}", i.id]}, @mapping.inventory_id) %>
   </div>
 
   <div>
