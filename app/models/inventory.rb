@@ -1,6 +1,6 @@
 class Inventory < ApplicationRecord
 
-	enum status: { inactive: 0, active: 1, deleted: 2 }
+	enum status: { active: 1 }
 	
 	validates :name, presence: true, allow_blank: false, uniqueness: true
 	validates :description, presence: true, allow_blank: false
