@@ -1,23 +1,12 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This project is a submission for the Shopify Fall 2022 Backend Developer Challenge
 
-Things you may want to cover:
+* Ruby version - ```3.1.2```
 
-* Ruby version
+* Rails version - ```7.0.3```
 
-3.1.2
+* Database creation - ```rake db:migrate```
 
-* Rails version
-
-7.0.3
-
-* Database creation
-
-rake db:migrate
-
-* Database initialization
-
-rake db:seed
+* Database initialization - ```rake db:seed```
 
