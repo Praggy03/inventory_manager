@@ -44,10 +44,18 @@ class InventoriesController < ApplicationController
   end
 
   def destroy
-    @inventory.destroy
-    respond_to do |format|
-      format.html { redirect_to inventories_url, notice: I18n.t("inventory.destroyed") }
-      format.json { head :no_content }
+    @mapping = ShipmentInventoryMapping.where(inventory_id: @inventory.id)
+    if @mapping.present?
+      respond_to do |format|
+        format.html { redirect_to inventory_url(@inventory), notice: I18n.t("cannot_destroy_item") }
+        format.json { head :no_content }
+      end
+    else
+      @inventory.destroy
+      respond_to do |format|
+        format.html { redirect_to inventories_url, notice: I18n.t("inventory.destroyed") }
+        format.json { head :no_content }
+      end
     end
   end
 
