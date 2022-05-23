@@ -54,11 +54,16 @@ class ShipmentsController < ApplicationController
 
   # DELETE /shipments/1 or /shipments/1.json
   def destroy
-    @shipment.destroy
-
-    respond_to do |format|
-      format.html { redirect_to shipments_url, notice: I18n.t("shipment.destroyed") }
-      format.json { head :no_content }
+    if @shipment.destroy
+      respond_to do |format|
+        format.html { redirect_to shipments_url, notice: I18n.t("shipment.destroyed") }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to shipments_url, notice: I18n.t("cannot_destroy_item") }
+        format.json { head :no_content }
+      end
     end
   end
 

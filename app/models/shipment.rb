@@ -5,8 +5,8 @@ class Shipment < ApplicationRecord
   
   belongs_to :source, class_name: 'City'
   belongs_to :destination, class_name: 'City'
-  has_many :shipment_inventory_mappings
-  has_many :inventory, through: :shipment_inventory_mappings
+  has_many :shipment_inventory_mappings, dependent: :restrict_with_error
+  has_many :inventory, through: :shipment_inventory_mappings, dependent: :restrict_with_error
 
 
   def add_inventory(inventory, quantity)
