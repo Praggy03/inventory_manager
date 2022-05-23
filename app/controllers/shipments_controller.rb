@@ -54,7 +54,8 @@ class ShipmentsController < ApplicationController
 
   # DELETE /shipments/1 or /shipments/1.json
   def destroy
-    if @shipment.destroy
+    @mappings = ShipmentInventoryMapping.where(shipment_id: @shipment.id)
+    if !@mappings.present? && @shipment.destroy
       respond_to do |format|
         format.html { redirect_to shipments_url, notice: I18n.t("shipment.destroyed") }
         format.json { head :no_content }
