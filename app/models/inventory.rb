@@ -7,7 +7,7 @@ class Inventory < ApplicationRecord
 	validates :quantity, numericality: { greater_than_or_equal_to: 0 }
 
 	has_many :shipment_inventory_mappings, dependent: :restrict_with_error
-	has_many :shipment, through: :shipment_inventory_mapping, dependent: :restrict_with_error
+	has_many :shipments, through: :shipment_inventory_mappings, dependent: :restrict_with_error
 
 	def check_and_update_quantity(quantity)
 		shipment_inventory = self.shipment_inventory_mappings
